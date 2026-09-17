@@ -1,0 +1,15 @@
+# ROS 2 build artifacts
+build/
+install/
+log/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.class
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

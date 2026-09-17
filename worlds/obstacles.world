@@ -1,0 +1,159 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Enclosing Wall 1 -->
+    <model name='wall_north'>
+      <static>1</static>
+      <pose>0 5 1 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry><box><size>10 0.2 2</size></box></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><box><size>10 0.2 2</size></box></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Enclosing Wall 2 -->
+    <model name='wall_south'>
+      <static>1</static>
+      <pose>0 -5 1 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry><box><size>10 0.2 2</size></box></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><box><size>10 0.2 2</size></box></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Enclosing Wall 3 -->
+    <model name='wall_east'>
+      <static>1</static>
+      <pose>5 0 1 0 0 1.5708</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry><box><size>10 0.2 2</size></box></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><box><size>10 0.2 2</size></box></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Enclosing Wall 4 -->
+    <model name='wall_west'>
+      <static>1</static>
+      <pose>-5 0 1 0 0 1.5708</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry><box><size>10 0.2 2</size></box></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><box><size>10 0.2 2</size></box></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Central Pillar 1 -->
+    <model name='obstacle_cylinder_1'>
+      <static>1</static>
+      <pose>1.5 1.5 0.5 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry><cylinder><radius>0.4</radius><length>1.0</length></cylinder></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><cylinder><radius>0.4</radius><length>1.0</length></cylinder></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Red</name></script></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Central Pillar 2 -->
+    <model name='obstacle_cylinder_2'>
+      <static>1</static>
+      <pose>-2 -1.5 0.5 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry><cylinder><radius>0.5</radius><length>1.0</length></cylinder></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><cylinder><radius>0.5</radius><length>1.0</length></cylinder></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Blue</name></script></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Barrier 1 -->
+    <model name='barrier_1'>
+      <static>1</static>
+      <pose>-1 2 0.5 0 0 0.785</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry><box><size>2.0 0.3 1.0</size></box></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><box><size>2.0 0.3 1.0</size></box></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Green</name></script></material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
