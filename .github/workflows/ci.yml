@@ -1,0 +1,67 @@
+name: ROS 2 AMR CI & Quality Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-package:
+    name: Validate ROS 2 Models, Launchers & Configs
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml flake8
+
+      - name: Verify XML & Xacro Syntax
+        run: |
+          python -c "
+          import xml.etree.ElementTree as ET
+          import glob
+          import sys
+
+          errors = []
+          for f in glob.glob('description/**/*.xacro', recursive=True) + ['package.xml', 'worlds/obstacles.world']:
+              try:
+                  ET.parse(f)
+                  print(f'✅ Valid XML: {f}')
+              except Exception as e:
+                  errors.append(f'❌ Error in {f}: {e}')
+
+          if errors:
+              for err in errors:
+                  print(err)
+              sys.exit(1)
+          print('🎉 All Xacro and XML models parsed successfully!')
+          "
+
+      - name: Validate Python Launch Scripts
+        run: |
+          python -m py_compile launch/*.py
+          flake8 launch/ --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Validate YAML Configurations
+        run: |
+          python -c "
+          import yaml
+          import glob
+          import sys
+
+          for yml in glob.glob('config/*.yaml'):
+              with open(yml, 'r') as f:
+                  yaml.safe_load(f)
+              print(f'✅ Valid YAML: {yml}')
+          print('🎉 All YAML parameter files parsed successfully!')
+          "

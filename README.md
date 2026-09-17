@@ -1,5 +1,6 @@
 # my_bot — Autonomous Mobile Robot (AMR)
 
+[![CI](https://github.com/samanuay/my_bot/actions/workflows/ci.yml/badge.svg)](https://github.com/samanuay/my_bot/actions/workflows/ci.yml)
 [![ROS 2](https://img.shields.io/badge/ROS_2-Humble_Hawksbill-22314E?style=for-the-badge&logo=ros&logoColor=white)](https://docs.ros.org/en/humble/)
 [![Gazebo](https://img.shields.io/badge/Gazebo-11-F58220?style=for-the-badge&logo=gazebo&logoColor=white)](https://gazebosim.org/)
 [![Nav2](https://img.shields.io/badge/Navigation-Nav2-00599C?style=for-the-badge)](https://navigation.ros.org/)
